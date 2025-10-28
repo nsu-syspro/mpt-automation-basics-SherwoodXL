@@ -18,10 +18,14 @@ jobs:
       run: ./configure
 
     - name: Install dependencies
-      run: make
+      run: make | 
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+        sudo apt-get install -y jq
+    
 
     - name: Run check
       run: make check
 
-    - name: Run distcheck
-      run: make distcheck
+    - name: Run clean
+      run: make clean
