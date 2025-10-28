@@ -16,11 +16,9 @@ $(target): $(sources) config.json
 check: $(target) $(test)
 
 test/%.test: test/%.txt test/%.expected
-	@$(target) test/$*.txt > test/$*.out
-	@diff test/$*.expected test/$*.out
-	@rm test/$*.out
+	@$(target) test/$*.txt | diff test/$*.expected - && echo
 
 clean:
 	rm -rf build
 
-.PHONY: all check clean 
+.PHONY: all check clean
